@@ -1,0 +1,12 @@
+.valecity-world {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+.valecity-world:hover {
+    
+
+}

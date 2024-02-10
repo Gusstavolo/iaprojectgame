@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Autônomo</title>
+</head>
+<body>
+  <div id="player" style="width: 50px; height: 50px; background-color: blue; position: absolute;"></div>
+
+  <script>
+    // Definindo as coordenadas máximas da área de movimentação
+    const maxX = 500;
+    const maxY = 300;
+
+    // Função para mover o player aleatoriamente
+    function moverPlayerAleatoriamente() {
+      // Gerando um número aleatório para determinar a direção do movimento
+      const direcao = Math.floor(Math.random() * 4); // 0: cima, 1: baixo, 2: esquerda, 3: direita
+
+      // Movendo o player de acordo com a direção escolhida
+      switch (direcao) {
+        case 0:
+          if (player.offsetTop > 0) {
+            player.style.top = (player.offsetTop - 10) + 'px';
+          }
+          break;
+        case 1:
+          if (player.offsetTop < maxY) {
+            player.style.top = (player.offsetTop + 10) + 'px';
+          }
+          break;
+        case 2:
+          if (player.offsetLeft > 0) {
+            player.style.left = (player.offsetLeft - 10) + 'px';
+          }
+          break;
+        case 3:
+          if (player.offsetLeft < maxX) {
+            player.style.left = (player.offsetLeft + 10) + 'px';
+          }
+          break;
+      }
+    }
+
+    // Chamando a função para mover o player aleatoriamente a cada 1 segundo
+    setInterval(moverPlayerAleatoriamente, 100);
+  </script>
+</body>
+</html>
