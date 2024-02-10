@@ -53,7 +53,7 @@ function moverPlayerAleatoriamente() {
         };
     
     // Chamando a função para mover o player aleatoriamente a cada 1 segundo
-} 
+} setInterval(moverPlayerAleatoriamente, vlx);
 
 valuerange.addEventListener('input', function () {
 
