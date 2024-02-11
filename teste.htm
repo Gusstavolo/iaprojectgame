@@ -1,50 +1,71 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Player Autônomo</title>
-</head>
-<body>
-  <div id="player" style="width: 50px; height: 50px; background-color: blue; position: absolute;"></div>
-
+  <title>Player Autônomo com Aprendizado de Máquina</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
   <script>
-    // Definindo as coordenadas máximas da área de movimentação
-    const maxX = 500;
-    const maxY = 300;
+    // Função para criar e treinar o modelo
+    async function trainModel(data) {
+      // Separar os dados em entradas (X) e saídas (Y)
+      const xs = data.map(d => [d.offsetTop, d.offsetLeft]);
+      const ys = data.map(d => [d.moveX, d.moveY]);
 
-    // Função para mover o player aleatoriamente
-    function moverPlayerAleatoriamente() {
-      // Gerando um número aleatório para determinar a direção do movimento
-      const direcao = Math.floor(Math.random() * 4); // 0: cima, 1: baixo, 2: esquerda, 3: direita
+      // Normalizar os dados
+      const xsTensor = tf.tensor2d(xs).div(tf.scalar(100)); // Normalizar entre 0 e 1
+      const ysTensor = tf.tensor2d(ys).div(tf.scalar(100)); // Normalizar entre 0 e 1
 
-      // Movendo o player de acordo com a direção escolhida
-      switch (direcao) {
-        case 0:
-          if (player.offsetTop > 0) {
-            player.style.top = (player.offsetTop - 10) + 'px';
-          }
-          break;
-        case 1:
-          if (player.offsetTop < maxY) {
-            player.style.top = (player.offsetTop + 10) + 'px';
-          }
-          break;
-        case 2:
-          if (player.offsetLeft > 0) {
-            player.style.left = (player.offsetLeft - 10) + 'px';
-          }
-          break;
-        case 3:
-          if (player.offsetLeft < maxX) {
-            player.style.left = (player.offsetLeft + 10) + 'px';
-          }
-          break;
-      }
+      // Definir a arquitetura do modelo
+      const model = tf.sequential();
+      model.add(tf.layers.dense({units: 10, inputShape: [2], activation: 'relu'}));
+      model.add(tf.layers.dense({units: 2, activation: 'softmax'}));
+
+      // Compilar o modelo
+      model.compile({optimizer: 'adam', loss: 'meanSquaredError'});
+
+      // Treinar o modelo
+      await model.fit(xsTensor, ysTensor, {epochs: 100});
+
+      return model;
     }
 
-    // Chamando a função para mover o player aleatoriamente a cada 1 segundo
-    setInterval(moverPlayerAleatoriamente, 100);
+    // Função para prever a próxima ação do jogador
+    async function predictAction(model, player) {
+      const [offsetTop, offsetLeft] = [player.offsetTop, player.offsetLeft];
+      const input = tf.tensor2d([[offsetTop, offsetLeft]]).div(tf.scalar(100));
+      const prediction = model.predict(input);
+      const [moveX, moveY] = await prediction.array();
+      return { moveX, moveY };
+    }
+
+    // Função para mover o player com base na previsão
+    async function movePlayer(model, player) {
+      const { moveX, moveY } = await predictAction(model, player);
+      // Mover o jogador com base na previsão
+      // Exemplo: player.move(moveX, moveY);
+      console.log('Move X:', moveX, 'Move Y:', moveY);
+    }
+
+    // Exemplo de uso
+    async function runExample() {
+      // Dados de treinamento (substitua isso pelos seus dados reais)
+      const trainingData = [
+        { offsetTop: 10, offsetLeft: 20, moveX: 0.1, moveY: 0.2 },
+        { offsetTop: 20, offsetLeft: 30, moveX: 0.2, moveY: 0.3 },
+        // Mais dados...
+      ];
+
+      // Treinar o modelo
+      const model = await trainModel(trainingData);
+
+      // Mover o jogador com base na previsão do modelo
+      const player = { offsetTop: 30, offsetLeft: 40 }; // Suponha que o jogador comece aqui
+      movePlayer(model, player);
+    }
   </script>
+</head>
+<body>
+  <canvas id="player" class="player-config"></canvas>
+
+  <button onclick="runExample()">Executar Exemplo</button>
 </body>
 </html>

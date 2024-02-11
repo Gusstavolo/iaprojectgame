@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="./source/styles/worldst.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
     <title>GIA</title>
 </head>
 <body>
     <div class="valecity-world">
-        <input id="tempo-range" type="range" value="600" min="200" max="1000" step="100">
-        
+        <input id="pi_input" type="range" min="0" max="1000" step="200" />
+        <p>Value: <output id="value"></output></p>
     </div>
 
     <main>
@@ -18,11 +20,10 @@
               <div class="floor-background" id="floor-3d">
                 <canvas id="player" class="player-config"></canvas>
               </div>
-              
-        
         </section>
     </main>
 
     <script src="./source/scripts/scritpplayer.js" defer></script>
+   
 </body>
 </html>
