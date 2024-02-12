@@ -5,6 +5,8 @@ const maxY = xymax.offsetHeight;
 const value = document.querySelector("#value");
 const input = document.querySelector("#pi_input");
 
+const canvasplayer = document.getElementById('player');
+
 value.textContent = input.value;
 input.addEventListener("input", (event) => {
   value.textContent = event.target.value;
@@ -17,6 +19,7 @@ input.addEventListener("input", (event) => {
 
 
 function movePlayer() {
+    let direcao = Math.floor(Math.random() * (5 - 0) + 0);
     function playerUp() {
         if (player.offsetTop > -40) {
             player.style.top = (player.offsetTop - 10) + 'px';
@@ -37,11 +40,29 @@ function movePlayer() {
             player.style.left = (player.offsetLeft + 10) + 'px';
         }
     }
-
-
-    const direcao = Math.floor(Math.random() * (4 - 0) + 0);
+    function playerStop() {
     
-    switch (direcao) {
+        
+            
+              player.style.width = '15px';
+              player.style.height = '60px';
+    
+
+              player.style.width = '10px';
+              player.style.height = '80px';
+
+
+            
+            
+
+        }
+   
+      
+    
+
+    
+
+     switch (direcao) {
 
             case 0:
                  playerUp();
@@ -56,7 +77,8 @@ function movePlayer() {
                  playerRight();
                  break;
             case 4:
-                
+                playerStop();
+                break;
 
     }
     setTimeout(() => {
@@ -65,5 +87,5 @@ function movePlayer() {
     console.log(direcao)
     
   }, input.value);
-} 
+}
 movePlayer();
