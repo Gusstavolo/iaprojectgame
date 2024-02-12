@@ -1,0 +1,12 @@
+.player-config {
+    transform-style: preserve-3d;
+    display: flex;
+    position: absolute;
+    left: 10%;
+    top:  1%;
+    width: 10px;
+    height: 80px;
+    transform: rotateX(70deg);
+    background-color: blueviolet;
+
+}
