@@ -3,11 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./source/styles/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-   
+    <header>
+
+        <div id="myProgress">
+
+            <div id="myBar">10%</div>
+         
+        </div>
+
+    </header>
+    
+    <div class="valecity-world">
+        <input id="pi_input" type="range" min="0" max="1000" step="200" />
+        <p>Value: <output id="value"></output></p>
+    </div>
     <main>
         <Section id="floorID" class="floor">
 
@@ -19,6 +32,7 @@
         </Section>
     </main>
     
-    <script src="./source/apps/app.js" defer></script>
+    <script src="./source/appjs/player.js" defer></script>
+    <script src="./source/appjs/oapp.js" defer></script>
 </body>
 </html>
