@@ -353,7 +353,7 @@ function movePass() {
 setInterval(() => {
     //movePass();
     movefood();
-    playerstatusmove();
+   // playerstatusmove();
 
 }, 1000);
 

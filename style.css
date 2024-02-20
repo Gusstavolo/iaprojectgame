@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    overflow: hidden; 
+}
 main {
     display: flex;
     justify-content: center;
@@ -67,18 +70,53 @@ header {
   .dish {
     position: absolute;
     display: flex;
-    top: 450px;
-    width: 150px;
-    height: 200px;
+    top: 500px;
+    width: 100px;
+    height: 100px;
     scale: 1;
     background-color: beige;
     justify-content: center;
     align-items: center;
-    transform: rotateX(60deg);
+    
     box-shadow: 0px 50px 20px 0px rgb(77, 77, 77);
 
   }
   
+  .food {
+    position: absolute;
+    display: flex;
+
+    width: 50px;
+    height: 50px;
+    
+    background: no-repeat url('./source/image/cookie.png');
+    background-size: 100%;
+    
+
+  }
+  .foodinfloor {
+    position: absolute;
+    display: flex;
+
+    width: 10px;
+    height: 10px;
+    
+    background: no-repeat url('./source/image/cookie.png');
+    background-size: 100%;
+
+
+  }
+  .spawnfood {
+    position: absolute;
+    display: flex;
+   
+    border: 1px solid red;
+    
+    width: 500px;
+    height: 300px;
+    scale: 1.3;
+
+  }
 
 
 
