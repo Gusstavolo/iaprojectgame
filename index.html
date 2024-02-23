@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <audio id="eataudio" src="./source/image/eatsound.wav"></audio>
     <header>
 
         <div id="myProgress">
@@ -25,14 +26,16 @@
                 
         </Section>
         
+    
+
+        
         <section id="areafood" class="spawnfood">
             <canvas id="foodfloor" class="foodinfloor"></canvas>
         </section>
 
         
-        <section class="dish">
-
-            <canvas class="food" draggable="true"></canvas>
+        <section onclick="alimentarPlayer()" class="dish">
+            <canvas id="foodid" class="food" ></canvas>
         </section>
     </main>
     

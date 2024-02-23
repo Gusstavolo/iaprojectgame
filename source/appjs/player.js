@@ -10,6 +10,7 @@ var max_floor_height = floor.offsetHeight - 30;
 var min_floor_width = 0;
 var min_floor_height = -20;
 
+var contI = 0;
 
 
 var playerspeed = 10;
@@ -193,6 +194,7 @@ function moveRIGHT(){
 }
 
 function playerstatusmove() {
+    movefood();
     const threshold = 0.1;
     const inputs = [moveUP().a,moveDAWN().a,moveLEFT().a,moveRIGHT().a];
     const weights = [0.5,0.4,0.3,0.2];
@@ -349,12 +351,14 @@ function movePass() {
 
 }
 
+var contI = 0;
 
 setInterval(() => {
     //movePass();
-    movefood();
-    playerstatusmove();
-
+    if (contI == 0){
+        playerstatusmove();
+    }
+    
 }, 1000);
 
 
