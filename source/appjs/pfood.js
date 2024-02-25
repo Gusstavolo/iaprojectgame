@@ -40,11 +40,8 @@ function timefood() {
         heigth++;
         fooddish.style.height = heigth + "%";
       }
-
     }
-    
   }
-
 }
 
 
@@ -82,17 +79,14 @@ function alimentarPlayer() {
         contI = 0;
         elem.style.width = elem.offsetWidth + 30 + 'px';
     
-    }, 3000);
+     }, 3000);
     } 
-   
-
 }
   
 
 
 function food() {
     elem.style.width = elem.offsetWidth - width + 'px';
-    //console.log(elem.style.width);
 }
 function movefood() {
     if(playerPOSX != player.style.left){
@@ -106,6 +100,7 @@ function movefood() {
     }   
 }
 
+//mecanica a ser melhorada
 let playertofood
 function tofood() {
     playertofood = calcularComandos(player.offsetLeft, player.offsetTop, foodspawn.offsetLeft, foodspawn.offsetTop);
@@ -116,10 +111,8 @@ function movetofood() {
 
         switch(displayfoodspawn) {
             case 'block':
-                for (let prop in playertofood) {
-                                
+                for (let prop in playertofood) {           
                     moverPlayer(playertofood[prop].x, playertofood[prop].y, duracao);
-                
                 }
             break;
         }

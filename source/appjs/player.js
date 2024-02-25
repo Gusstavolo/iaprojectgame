@@ -11,8 +11,6 @@ var min_floor_width = 0;
 var min_floor_height = -20;
 
 var contI = 0;
-
-
 var playerspeed = 10;
 
 const playerP = 10;
@@ -93,11 +91,7 @@ function moverPlayer(destX, destY, duration) {
 
     move();
 }
-
-
 //moverPlayer(destinoX, destinoY, duracao);
-
-
 
 
 function moveUP() {
@@ -117,12 +111,9 @@ function moveUP() {
          for (let i = 0; i < inputs.length; i++) {
            sum += inputs[i] * weights[i];
         }
-
         let output = sum > threshold ? 1 : 0;
         if(output == 1){
-            
             moverPlayer(player.offsetLeft, player.offsetTop - playerP, duracao );
-          //  player.style.top = (player.offsetTop - playerspeed) + 'px';
         }
 
         return { a: output, b: player.style.top};
@@ -143,13 +134,9 @@ function moveDAWN(){
    let output = sum > threshold ? 1 : 0;
    if(output == 1){
     moverPlayer(player.offsetLeft,player.offsetTop + playerP, duracao );
-    //player.style.top = (player.offsetTop + playerspeed) + 'px';
-}
-
-
-   return { a: output, b: player.style.top};
-
-}
+    }
+    return { a: output, b: player.style.top};
+    }
 function moveLEFT() {
     let i1 =  player.offsetLeft > min_floor_width ? 1 : 0;
     
@@ -167,7 +154,6 @@ function moveLEFT() {
    let output = sum > threshold ? 1 : 0;
    if(output ==1){
     moverPlayer(player.offsetLeft - playerP, player.offsetTop, duracao );
-    //player.style.left = (player.offsetLeft - playerspeed) + 'px';
    }
    return { a: output, b: player.style.left};
 }
@@ -187,7 +173,6 @@ function moveRIGHT(){
    let output = sum > threshold ? 1 : 0;
    if(output ==1){
     moverPlayer( player.offsetLeft + playerP, player.offsetTop, duracao );
-    //player.style.left = (player.offsetLeft + playerspeed) + 'px';
    }
 
    return { a: output, b: player.style.left };
@@ -226,12 +211,10 @@ function playerstatusmove() {
              break;
     
     case 11:
-
+            //ainda a declarar
         break;
    }
 }
-
-
 
 
 function movePass() {
@@ -240,14 +223,7 @@ function movePass() {
     inputs, 1. verifica se o player esta no limite de altura
     se 1 nao esta
     se 0 esta
-    */
-     let i1 = player.offsetTop > min_floor_height ? 1 : 0;
-     let ii1 = player.offsetTop < max_floor_height ? 1 : 0;
-
-     let r1 = player.offsetTop > yCAMINHO ? 1 : 0;
-     let rr2 = player.offsetTop < yCAMINHO ? 1 : 0;
-     /*
-     possibilidades
+     possibilidades:
     i1 = 0.5
     ii1 = 0.4
 
@@ -262,6 +238,12 @@ function movePass() {
      i1 + r1 + rr2 = 1.7
      ii1 + r1 + rr2 = 1.6
      */
+     let i1 = player.offsetTop > min_floor_height ? 1 : 0;
+     let ii1 = player.offsetTop < max_floor_height ? 1 : 0;
+
+     let r1 = player.offsetTop > yCAMINHO ? 1 : 0;
+     let rr2 = player.offsetTop < yCAMINHO ? 1 : 0;
+
      console.log('posicao do player: '+ player.offsetTop);
      console.log('caminho final Y: ' + yCAMINHO);
      const threshold = 1.2;
@@ -310,7 +292,6 @@ function movePass() {
                     for (let prop in comandos) {
                     
                     moverPlayer(comandos[prop].x, comandos[prop].y, duracao );
-                   // animateSmoothMovement(player.offsetTop, comandosY[prop].y);
                     
                     }
            
@@ -319,9 +300,6 @@ function movePass() {
             for (let prop in comandos) {
 
                 moverPlayer(comandos[prop].x, comandos[prop].y, duracao );
-
-             //   animateSmoothMovement(player.offsetTop, comandosY[prop].y);
-                
                 }
                 
         break;
