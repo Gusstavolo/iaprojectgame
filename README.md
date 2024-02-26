@@ -27,7 +27,7 @@
 
 <ol>
   <li>Clone este repositório para o seu ambiente local.</li>
-  <li>Ou acesse meu link do vercel: https://iaprojectgame-lpy1kqry9-gustavo-olis-projects.vercel.app</li>
+  <li>Ou acesse meu link do vercel: https://iaprojectgame.vercel.app</li>
   <li>Certifique-se de ter todas as dependências instaladas.</li>
   <li>Execute o arquivo principal do jogo{index.html>.</li>
 </ol>
